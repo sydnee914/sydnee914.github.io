@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 3: Turtle Graphics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Project 3: Turtle Graphics</h1>
+    </header>
+ <section>
+        <h2>About the Project</h2>
+        <p>This project follows project two and is a more complex and refactored version of the turtle graphics scence. After learning
+            a way to create more generalized code, I refactored my code to create more reusable functions and a more complex scene. 
+            I added more elements to the scene such as a flower garden, more houses, and trees.
+        </p>
+    </section>
+
+    <!-- Code highlights -->
+    <section>
+        <h2>Sample Code</h2>
+        <p>
+            This function is a refactored version of the code used to create the flowers in the scene. It creates a small flower with overlappiing circles as petals. 
+            The function takes in parameters for the object, starting position, and size to allow for flexibility of size and location.:
+            <br><br>
+            • <strong>t</strong>: The turtle graphics object for drawing<br>
+            • <strong>x, y</strong>: Starting position coordinates for the flower<br>
+            • <strong>size</strong>: Scale factor (default 1.0) to make flowers larger or smaller
+        </p>
+            <!-- code snippet will be injected here -->
+            <div class="code-container">
+                <code id="general-flower-code"></code>
+            </div>
+        <h3>Generalized Scene Code</h3>
+        <P>This function allows to me use each generalized function and more easily create my scene:</P>
+    </section>
+
+    <section>
+        <h2>Final Scene</h2>
+    <p>Here's the completed turtle graphics scene featuring my house 
+with my small flower, a big and bright sun, and a tree:
+     </p>
+    
+        <div class="scene-container">
+            <img src="Project_3_Turtle_Scene.png" alt="Turtle Graphics Scene" class="scene-image">
+        </div>
+        
+        <p class="scene-description">
+            This scene combines code from the previous project with new code to create a more complex scene that allows 
+            for more flexibility, generalization, and reuse of code. The house incorporates rectangle, a triangle and a small circle for the window. 
+            The sun follows a similar technique to the flower, using overlapping circle to create the circle. The tree is made of a rectangle for the trunk and a circle for the leaves, using similar code and techniques to the other elements in the scene.
+            
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sydnee Larson</p>
+    </footer>
+
+    <!-- script to populate the generalized flower code snippet -->
+    <script>
+        function insertGeneralFlowerCode() {
+            var codeText = '' +
+                'def draw_flower(t, x, y):\n' +
+                '    jump_to(t, x, y)\n' +
+                '    draw_rectangle(t, 5, 40, "lightgreen")\n' +
+                '\n' +
+                '    t.color("red")\n' +
+                '    for _ in range(6):\n' +
+                '        t.circle(10)\n' +
+                '        t.right(60)\n' +
+                '\n' +
+                '    t.color("yellow")\n' +
+                '    t.begin_fill()\n' +
+                '    t.circle(5)\n' +
+                '    t.end_fill()\n';
+
+            var el = document.getElementById('general-flower-code');
+            if (el) {
+                el.textContent = codeText;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', insertGeneralFlowerCode);
+    </script>
+</body>
+</html>       
+
+
+
+
+
+
+
+
+
+

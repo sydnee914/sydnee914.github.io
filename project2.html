@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2: Turtle Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Project 2: Turtle Project</h1>
+    </header>
+
+    <!-- Project Description -->
+    <section>
+        <h2>About the Project</h2>
+        <p>This project utilizes Python's turtle graphics library. For my first turtle project, I created a scene with small house and tree. 
+            I later learned how to expand and create more generalized and refactored code to improve this project further. 
+        </p>
+    </section>
+
+    <!-- Code highlights -->
+    <section>
+        <h2>Sample Code</h2>
+        <p>
+            This function creates a small flower with overlappiing circles as petals. The function takes in parameters for the object, starting position, and size to allow for flexibility of size and location.:
+            <br><br>
+            • <strong>t</strong>: The turtle graphics object for drawing<br>
+            • <strong>x, y</strong>: Starting position coordinates for the flower<br>
+            • <strong>size</strong>: Scale factor (default 1.0) to make flowers larger or smaller
+        </p>
+        <!-- container where the code snippet will be injected -->
+        <div class="code-container">
+            <code id="flower-code"></code>
+        </div>
+        
+        
+    <!-- the scene -->
+    <section>
+        <h2>Final Scene</h2>
+        <p>Here's the completed turtle graphics scene featuring my house with my small flower, a big and bright sun, and a tree:</p>
+        
+        <div class="scene-container">
+            <img src="turtle_scene.png" alt="Turtle Graphics Scene" class="scene-image">
+        </div>
+        
+        <p class="scene-description">
+            The scene combines and utilizes various turtle graphic techniques to create a basic scene. The house incorporates rectangle,
+             a triangle and a small circle for the window. The sun follows a similar technique to the flower, using overlapping circle 
+             to create the circle. The tree is made of a rectangle for the trunk and a circle for the leaves, using similar code and techniques 
+             to the other elements in the scene. 
+            
+        </p>
+    </section>
+    </section>
+    
+      
+    <footer>
+        <p>&copy; 2025 Sydnee Larson</p>
+    </footer>
+   
+    <!-- script to insert the example flower code into the page -->
+    <script>
+        function insertFlowerCode() {
+            var petals = "    flower_color = \"red\"\n" +
+                         "    t.color(flower_color)\n" +
+                         "    for _ in range(6):\n" +
+                         "        t.circle(10)\n" +
+                         "        t.right(60)\n";
+            var center = "    t.color(\"yellow\")\n" +
+                         "    t.begin_fill()\n" +
+                         "    t.circle(5)\n" +
+                         "    t.end_fill()\n";
+
+            var codeEl = document.getElementById('flower-code');
+            if (codeEl) {
+                codeEl.textContent = petals + '\n' + center;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', insertFlowerCode);
+    </script>
+</body>
+</html>

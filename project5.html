@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 5: Text Processing with SpaCY</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Project 5: Text Processing with SpaCY</h1>
+    </header>
+
+    <!-- Project Description -->
+    <section>
+        <h2>About the Project</h2>
+        <p>This project focuses on text processing and word frequency analysis using the SpaCY model. 
+          The main goal is to fetch text from the given URL, print the statistics 
+          of the text, get word counts, and to print the top 10 most frequent words. 
+          Furthermore, we will remove stop words and punctuation to return a list of 
+          lemmatized words and their counts. 
+        </p>
+    </section>
+
+    <!-- Code highlights -->
+    <section>
+        <h2>Sample Code</h2>
+        <P>Fetching the text. For this project I used the first chapter of
+          Stephen Chbosky's novel "The Perks of Being a Wallflower" for analysis.
+          The code uses the requests library to fetch the text from the provided 
+          URL and checks for a successful response before returning the text content.
+        </P>
+   
+        <!-- code sample container -->
+        <div class="code-container">
+            <code id="fetch-text-code"></code>
+        </div>
+
+        <h3>Word Counts Function</h3>
+        <p>This function processes the fetched text to count word frequencies.</p>
+        <div class="code-container">
+            <code id="word-counts-code"></code>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Results</h2>
+        <p>After running the code, we can see the statistics of the text, the word counts, the top 15 most frequent words, 
+            and lemmatization, which included the removal of stop words and punctuation.
+            After removing stop words and punctuation, we can see a list of lemmatized words and their counts, which provides insight 
+            into the most frequently used words in the text without common filler words.
+            The results show that the 15 most common words in the text are Micheal, think, know, like, say, sister, try, want, go,
+            school, tell, and dad. The words yield conclusions about the chapter and the books main themes which can be useful in the 
+            real world.
+        </p>
+    </section>
+  
+
+    <footer>
+        <p>&copy; 2025 Sydnee Larson</p>
+    </footer>
+
+    <!-- script to insert the fetch_text function code -->
+    <script>
+        function insertFetchTextCode() {
+            var codeText = '' +
+                'def fetch_text(raw_url):\n' +
+                '  import requests\n' +
+                '  from pathlib import Path\n' +
+                '  import hashlib\n' +
+                '\n' +
+                '  CACHE_DIR = Path("cs_110_content/text_cache")\n' +
+                '  CACHE_DIR.mkdir(parents=True, exist_ok=True)\n' +
+                '\n' +
+                '  def _url_to_filename(url):\n' +
+                '    url_hash = hashlib.sha1(url.encode("utf-8")).hexdigest()[:12]\n' +
+                '    return CACHE_DIR / f"{url_hash}.txt"\n' +
+                '\n' +
+                '  cache_path = _url_to_filename(raw_url)\n' +
+                '\n' +
+                '  SUCCESS_MSG = "\u2705 Text fetched."\n' +
+                '  FAILURE_MSG = "\u274C Failed to fetch text."\n' +
+                '  try:\n' +
+                '    if not cache_path.exists():\n' +
+                '      response = requests.get(raw_url, timeout=10)\n' +
+                '      response.raise_for_status()\n' +
+                '      text_data = response.text\n' +
+                '      cache_path.write_text(text_data, encoding="utf-8")\n' +
+                '    print(SUCCESS_MSG)\n' +
+                '    return cache_path.read_text(encoding="utf-8")\n' +
+                '\n' +
+                '  except Exception as e:\n' +
+                '    print(FAILURE_MSG)\n' +
+                '    print(f"Error: {e}")\n' +
+                '    return ""\n';
+
+            var el = document.getElementById('fetch-text-code');
+            if (el) {
+                el.textContent = codeText;
+            }
+        }
+
+        function insertWordCountsCode() {
+            var codeText = '' +
+                'def get_word_counts(text):\n' +
+                '  word_counts = {}\n' +
+                '  lines = text.splitlines()\n' +
+                '  for line in lines:\n' +
+                '    words = line.split()\n' +
+                '    for word in words:\n' +
+                '      word = word.lower()\n' +
+                '      if word in word_counts:\n' +
+                '        word_counts[word] += 1\n' +
+                '      else:\n' +
+                '        word_counts[word] = 1\n' +
+                '  return word_counts\n';
+
+            var el = document.getElementById('word-counts-code');
+            if (el) {
+                el.textContent = codeText;
+            }
+        }
+        
+    
+
+        document.addEventListener('DOMContentLoaded', function() {
+            insertFetchTextCode();
+            insertWordCountsCode();
+           
+        });
+    </script>
+</body>
+
+</html>
