@@ -42,6 +42,12 @@
             <code id="word-counts-code"></code>
         </div>
 
+        <h4>Top 10 Verbs Function</h4>
+        <p>This function fetches the top 10 verbs in the text</p>
+        <div class="code-container">
+            <code id="top-verbs-print-code"></code>
+        </div>
+
     </section>
 
     <section>
@@ -121,14 +127,42 @@
                 el.textContent = codeText;
             }
         }
+
+        function insertPrintTopVerbsCode() {
+            var codeText = '' +
+                'def print_top_10_frequent_verbs(text):\n' +
+                '  import spacy\n' +
+                '  nlp = spacy.load("en_core_web_sm")\n' +
+                '  doc = nlp(text)\n' +
+                '  verb_counts = {}\n' +
+                '  for token in doc:\n' +
+                '    if token.pos_ == "VERB":\n' +
+                '      verb = token.lemma_.lower()\n' +
+                '      verb_counts[verb] = verb_counts.get(verb, 0) + 1\n' +
+                '  sorted_verbs = sorted(verb_counts.items(), key=lambda x: x[1], reverse=True)\n' +
+                '  top_10_verbs = sorted_verbs[:10]\n' +
+                '  print("Top 10 most frequently used verbs:")\n' +
+                '  for verb, count in top_10_verbs:\n' +
+                '    print(f"{verb}: {count}")\n' +
+                '\n' +
+                'print_top_10_frequent_verbs(my_text)\n';
+
+            var el = document.getElementById('top-verbs-print-code');
+            if (el) {
+                el.textContent = codeText;
+            }
+        }
+            
         
     
 
         document.addEventListener('DOMContentLoaded', function() {
             insertFetchTextCode();
             insertWordCountsCode();
-           
+            insertPrintTopVerbsCode();
         });
+           
+     
     </script>
 </body>
 
